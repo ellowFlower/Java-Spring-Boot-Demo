@@ -7,20 +7,18 @@ import java.util.List;
 
 @Service
 public class CustomerService {
-    private final CustomerRepo customerRepo;
+    private final CustomerRepository customerRepository;
 
-    CustomerService(CustomerRepo customerRepo) {
-        this.customerRepo = customerRepo;
+    CustomerService(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
     }
 
     public List<Customer> getCustomers() {
-        return customerRepo.getCustomers();
+        return customerRepository.findAll();
     }
 
     public Customer getCustomer(Long id) {
-        return customerRepo.getCustomers().stream()
-                .filter(customer -> customer.getId().equals(id))
-                .findFirst()
+        return customerRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("customer " + id + " not found"));
     }
 }
