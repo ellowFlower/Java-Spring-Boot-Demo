@@ -19,9 +19,10 @@ public class Customer {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    Customer(Long id, String name) {
+    Customer(Long id, String name, String password) {
         this.id = id;
         this.name = name;
+        this.password = password;
     }
 
     public Customer() {
